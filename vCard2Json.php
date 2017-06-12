@@ -28,37 +28,36 @@ for($i = 0; $i < count($content); $i++){
         $tmp['email'] = $email;
         array_push($result, $tmp);
         resetVal();
-        continue;
     }
 
     // NAME
-    if(preg_match('/^FN:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^FN:(.+)\s*$/', $current, $out) === 1){
         $tmp["name"] = $out[1];
     }
 
     // NAME YOMI
-    if(preg_match('/^X-PHONETIC-LAST-NAME:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^X-PHONETIC-LAST-NAME:(.+)\s*$/', $current, $out) === 1){
         $tmp["yomi"] = mb_convert_kana($out[1], 'HV', 'UTF-8');
     }
 
     // TEL
-    if(preg_match('/^TEL;TYPE=.+:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^TEL;TYPE=.+:(.+)\s*$/', $current, $out) === 1){
         array_push($tel, $out[1]);
     }
 
     // EMAIL
-    if(preg_match('/^EMAIL.+:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^EMAIL.+:(.+)\s*$/', $current, $out) === 1){
         array_push($email, $out[1]);
     }
 
     // ADDRESS
-    if(preg_match('/^ADR;TYPE=.+:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^ADR;TYPE=.+:(.+)\s*$/', $current, $out) === 1){
         $addr = str_replace(';', '', $out[1]);
         $tmp["addr"] = $addr;
     }
 
     // BIRTHDAY
-    if(preg_match('/^BDAY:(.+)\s*$/', $current, $out) === 1){
+    else if(preg_match('/^BDAY:(.+)\s*$/', $current, $out) === 1){
         $tmp['bday'] = $out[1];
     }
 
