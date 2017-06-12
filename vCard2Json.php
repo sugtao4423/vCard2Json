@@ -32,13 +32,13 @@ for($i = 0; $i < count($content); $i++){
 
     // NAME
     else if(preg_match('/^FN:(.+)\s*$/', $current, $out) === 1){
-        $tmp["name"] = $out[1];
+        $tmp['name'] = $out[1];
     }
 
     // NAME YOMI
     else if(preg_match('/^X-PHONETIC-LAST-NAME:(.+)\s*$/', $current, $out) === 1){
-        $tmp["yomi"] = mb_convert_kana($out[1], 'HV', 'UTF-8');
-        $tmp["yomi"] = str_replace('\\,', '、', $tmp["yomi"]);
+        $tmp['yomi'] = mb_convert_kana($out[1], 'HV', 'UTF-8');
+        $tmp['yomi'] = str_replace('\\,', '、', $tmp['yomi']);
     }
 
     // TEL
@@ -54,7 +54,7 @@ for($i = 0; $i < count($content); $i++){
     // ADDRESS
     else if(preg_match('/^ADR;TYPE=.+:(.+)\s*$/', $current, $out) === 1){
         $addr = str_replace(';', '', $out[1]);
-        $tmp["addr"] = $addr;
+        $tmp['addr'] = $addr;
     }
 
     // BIRTHDAY
