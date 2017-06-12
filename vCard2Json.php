@@ -38,6 +38,7 @@ for($i = 0; $i < count($content); $i++){
     // NAME YOMI
     else if(preg_match('/^X-PHONETIC-LAST-NAME:(.+)\s*$/', $current, $out) === 1){
         $tmp["yomi"] = mb_convert_kana($out[1], 'HV', 'UTF-8');
+        $tmp["yomi"] = str_replace('\\,', '、', $tmp["yomi"]);
     }
 
     // TEL
